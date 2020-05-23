@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">covid19</string>
+
+    <string name="menu_stats">Statistics</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_news">News</string>
+    <string name="txt_people">People</string>
+    <string name="txt_positive">Positive</string>
+    <string name="txt_death">Death</string>
+    <string name="txt_recovered">Recovered</string>
+    <string name="number_0">0</string>
+
 </resources>
