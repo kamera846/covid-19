@@ -1,9 +1,12 @@
 package com.example.covid19
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,9 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Glide.with(this@MainActivity)
-            .load("https://i.pinimg.com/564x/08/78/53/0878535c72c7b2f6a7cc9b139cd673dd.jpg")
-            .placeholder(R.color.colorPrimaryDark)
-            .into(img_view)
+        val navView: BottomNavigationView = findViewById(R.id.nav_bar)
+
+        val navController = findNavController(R.id.root_fragment)
+        navView.setupWithNavController(navController)
     }
 }
