@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,12 +25,27 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        val imgVirus = root.findViewById<ImageView>(R.id.img_virus)
+
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             Glide.with(root)
                 .load(it)
                 .into(img_view)
         })
+
+        imgVirus.animate().apply {
+            duration = 1000
+
+            rotationXBy(360f)
+            rotationYBy(360f)
+        }.withEndAction {
+            imgVirus.animate().apply {
+                duration = 1000
+
+                rotationXBy(-360f)
+                rotationYBy(-360f)
+            }
+        }
         return root
     }
 }
