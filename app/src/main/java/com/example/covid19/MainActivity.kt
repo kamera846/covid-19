@@ -18,5 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.root_fragment)
         navView.setupWithNavController(navController)
+        navView.itemIconTintList = null
+        navView.itemTextAppearanceActive
     }
 }

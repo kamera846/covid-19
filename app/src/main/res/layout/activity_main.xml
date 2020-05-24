@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        app:itemIconTint="@color/colorAccent"
-        app:itemTextColor="@color/colorAccent"
+        app:itemTextColor="@drawable/nav_color_item"
         app:menu="@menu/bottom_nav_menu"/>
 
     <fragment
