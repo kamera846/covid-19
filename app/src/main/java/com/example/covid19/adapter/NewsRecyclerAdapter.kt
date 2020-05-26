@@ -1,13 +1,10 @@
 package com.example.covid19.adapter
 
 import android.content.Context
-import android.service.autofill.TextValueSanitizer
-import android.service.autofill.UserData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +28,7 @@ class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
     )
 
     override fun getItemCount() = mData.size

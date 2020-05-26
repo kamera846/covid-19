@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.covid19.R
+import com.example.covid19.model.MCountries
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 
 class StatisticsViewModel : ViewModel() {
 
-    private val _data = MutableLiveData<LineDataSet>().apply {
+    private val _dataChart = MutableLiveData<LineDataSet>().apply {
         //Part1
         val entries = ArrayList<Entry>()
 
@@ -32,5 +33,24 @@ class StatisticsViewModel : ViewModel() {
 
         value = vl
     }
-    val data: LiveData<LineDataSet> = _data
+
+    private val _dataList = MutableLiveData<ArrayList<MCountries>>().apply {
+        val list = ArrayList<MCountries>()
+
+        for(i in 0 until 10){
+            list.add(i, MCountries(
+                "",
+                "Region",
+                0,
+                0,
+                0
+            ))
+        }
+
+        value = list
+
+    }
+
+    val dataList: LiveData<ArrayList<MCountries>> = _dataList
+    val dataChart: LiveData<LineDataSet> = _dataChart
 }
