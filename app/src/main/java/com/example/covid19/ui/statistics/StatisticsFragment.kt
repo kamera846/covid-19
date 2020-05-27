@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.covid19.R
 import com.example.covid19.adapter.CountriesRecyclerAdapter
 import com.example.covid19.model.MCountries
+import com.example.covid19.ui.CustomMarker
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -76,6 +78,7 @@ class StatisticsFragment : Fragment() {
 
         //Part6
         lineChart.data = LineData(data)
+        lineChart.data.setValueTextColor(R.color.colorWhite)
 
         //Part7
         lineChart.axisRight.isEnabled = false
@@ -86,18 +89,18 @@ class StatisticsFragment : Fragment() {
         lineChart.setPinchZoom(true)
 
         //Part9
-        lineChart.description.text = "Days"
-        lineChart.setNoDataText("No forex yet!")
+        lineChart.description.text = "People"
+        lineChart.setNoDataText("Something went wrong")
 
-//            //Part10
-//            lineChart.animateX(1800, Easing.EaseInExpo)
-//
-//            //Part11
-//            val markerView = CustomMarker(this@ShowForexActivity, R.layout.marker_view)
-//            lineChart.marker = markerView
+        //Part10
+        lineChart.animateY(2000,Easing.EaseInBounce)
+
+        //Part11
+        val markerView = CustomMarker(context!!, R.layout.marker_view)
+        lineChart.marker = markerView
     }
 
-    private fun setDataList(data: ArrayList<MCountries>){
+    private fun setDataList(data: ArrayList<MCountries>) {
         recyclerview.apply {
             layoutManager = LinearLayoutManager(context!!)
             adapter = CountriesRecyclerAdapter(context!!, data)

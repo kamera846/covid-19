@@ -20,16 +20,19 @@ class StatisticsViewModel : ViewModel() {
         entries.add(Entry(3f, 7f))
         entries.add(Entry(4f, 20f))
         entries.add(Entry(5f, 16f))
+        entries.add(Entry(6f, 15f))
+        entries.add(Entry(7f, 8f))
+        entries.add(Entry(8f, 10f))
+        entries.add(Entry(9f, 20f))
+        entries.add(Entry(10f, 16f))
 
         //Part3
-        val vl = LineDataSet(entries, "My Type")
+        val vl = LineDataSet(entries, "In the world")
 
         //Part4
         vl.setDrawValues(false)
         vl.setDrawFilled(true)
         vl.lineWidth = 3f
-        vl.fillColor = R.color.colorAccent
-        vl.fillAlpha = R.color.colorRed
 
         value = vl
     }
