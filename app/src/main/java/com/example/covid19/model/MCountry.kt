@@ -1,9 +1,10 @@
 package com.example.covid19.model
 
-class MCountry (
+data class MCountry (
     var flag: String,
-    var name: String,
-    var positive: Int,
-    var death: Int,
-    var recovered: Int
+    var Country: String,
+    var TotalConfirmed: Int,
+    var TotalDeaths: Int,
+    var TotalRecovered: Int,
+    var Date: String
 )

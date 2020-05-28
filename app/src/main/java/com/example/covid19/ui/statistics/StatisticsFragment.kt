@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.covid19.R
 import com.example.covid19.adapter.CountriesRecyclerAdapter
-import com.example.covid19.model.MCountries
+import com.example.covid19.model.MCountry
 import com.example.covid19.ui.CustomMarker
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
@@ -100,7 +100,7 @@ class StatisticsFragment : Fragment() {
         lineChart.marker = markerView
     }
 
-    private fun setDataList(data: ArrayList<MCountries>) {
+    private fun setDataList(data: ArrayList<MCountry>) {
         recyclerview.apply {
             layoutManager = LinearLayoutManager(context!!)
             adapter = CountriesRecyclerAdapter(context!!, data)

@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.covid19.R
-import com.example.covid19.model.MCountries
+import com.example.covid19.model.MCountry
 
-class CountriesRecyclerAdapter(var mContext: Context, var mData: ArrayList<MCountries>) :
+class CountriesRecyclerAdapter(var mContext: Context, var mData: ArrayList<MCountry>) :
     RecyclerView.Adapter<CountriesRecyclerAdapter.ViewHolder>() {
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         var imgCountries = v.findViewById<ImageView>(R.id.img_countries)
@@ -32,9 +31,9 @@ class CountriesRecyclerAdapter(var mContext: Context, var mData: ArrayList<MCoun
 //                .load(mData[position].flag)
 //                .into(holder.imgCountries)
 
-        holder.tvName.text = mData[position].name
-        holder.tvPositive.text = mData[position].positive.toString()
-        holder.tvDeath.text = mData[position].death.toString()
-        holder.tvRecovered.text = mData[position].recovered.toString()
+        holder.tvName.text = mData[position].Country
+        holder.tvPositive.text = mData[position].TotalConfirmed.toString()
+        holder.tvDeath.text = mData[position].TotalDeaths.toString()
+        holder.tvRecovered.text = mData[position].TotalRecovered.toString()
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">covid19</string>
+    <string name="app_name">Covid19</string>
 
     <string name="menu_stats">Statistics</string>
     <string name="menu_home">Home</string>

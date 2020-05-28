@@ -1,12 +1,18 @@
 package com.example.covid19.ui.statistics
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.covid19.R
-import com.example.covid19.model.MCountries
+import com.example.covid19.data.Api
+import com.example.covid19.data.ApiService
+import com.example.covid19.model.MCountry
+import com.example.covid19.response.ResponseSummary
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class StatisticsViewModel : ViewModel() {
 
@@ -37,23 +43,35 @@ class StatisticsViewModel : ViewModel() {
         value = vl
     }
 
-    private val _dataList = MutableLiveData<ArrayList<MCountries>>().apply {
-        val list = ArrayList<MCountries>()
+    private val _dataList = MutableLiveData<ArrayList<MCountry>>().apply {
+        val list = ArrayList<MCountry>()
 
-        for(i in 0 until 10){
-            list.add(i, MCountries(
-                "",
-                "Region",
-                0,
-                0,
-                0
-            ))
-        }
+        val service = Api().apiRequest().create(ApiService::class.java)
+        service.getSummary().enqueue(object: Callback<ResponseSummary>{
+            override fun onFailure(call: Call<ResponseSummary>, t: Throwable) {
+                value = list
+            }
 
-        value = list
+            override fun onResponse(
+                call: Call<ResponseSummary>,
+                response: Response<ResponseSummary>
+            ) {
+                if (response.body() != null){
+                    val data = response.body()!!.Countries
+                    for(i in 0 until data.size){
+                        if(data[i].TotalConfirmed != 0){
+                            list.add(data[i])
+                        }
+                    }
+                    Log.d("LOGLOGAN", list.toString())
+                    value = list
+                }
+            }
+
+        })
 
     }
 
-    val dataList: LiveData<ArrayList<MCountries>> = _dataList
+    val dataList: LiveData<ArrayList<MCountry>> = _dataList
     val dataChart: LiveData<LineDataSet> = _dataChart
 }
