@@ -1,6 +1,6 @@
 package com.example.covid19.model
 
-class MCountries (
+class MCountry (
     var flag: String,
     var name: String,
     var positive: Int,
