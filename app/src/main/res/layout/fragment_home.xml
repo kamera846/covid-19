@@ -17,36 +17,52 @@
         android:layout_height="match_parent"
         android:background="#DE232931" />
 
-    <TextView
-        android:id="@+id/tex1"
+    <RelativeLayout
+        android:id="@+id/lnr_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="PLEASE STAY SAFE"
-        android:textColor="#eeeeee"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="24dp">
+        <TextView
+            android:id="@+id/tex1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="PLEASE STAY SAFE"
+            android:textColor="#eeeeee"
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tex2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tex1"
-        android:gravity="center"
-        android:text="AND HEALTHY"
-        android:textColor="#eeeeee"
-        android:textSize="24dp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/img_virus"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/img_virus" />
+        <TextView
+            android:id="@+id/tex2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tex1"
+            android:gravity="center"
+            android:text="AND HEALTHY"
+            android:textColor="#eeeeee"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lnr_footer"
+        android:layout_below="@+id/lnr_header"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_virus"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_virus" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnr_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -99,11 +115,11 @@
                     android:id="@+id/tv_positive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginVertical="8dp"
                     android:gravity="center"
                     android:text="@string/number_0"
                     android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -162,11 +178,11 @@
                     android:id="@+id/tv_death"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginVertical="8dp"
                     android:gravity="center"
                     android:text="@string/number_0"
                     android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -225,11 +241,11 @@
                     android:id="@+id/tv_recovered"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginVertical="8dp"
                     android:gravity="center"
                     android:text="@string/number_0"
                     android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView

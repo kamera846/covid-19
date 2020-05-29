@@ -44,34 +44,34 @@ class StatisticsViewModel : ViewModel() {
     }
 
     private val _dataList = MutableLiveData<ArrayList<MCountry>>().apply {
-        val list = ArrayList<MCountry>()
-
-        val service = Api().apiRequest().create(ApiService::class.java)
-        service.getSummary().enqueue(object: Callback<ResponseSummary>{
-            override fun onFailure(call: Call<ResponseSummary>, t: Throwable) {
-                value = list
-            }
-
-            override fun onResponse(
-                call: Call<ResponseSummary>,
-                response: Response<ResponseSummary>
-            ) {
-                if (response.body() != null){
-                    val data = response.body()!!.Countries
-                    for(i in 0 until data.size){
-                        if(data[i].TotalConfirmed != 0){
-                            list.add(data[i])
-                        }
-                    }
-                    Log.d("LOGLOGAN", list.toString())
-                    value = list
-                }
-            }
-
-        })
+//        val list = ArrayList<MCountry>()
+//
+//        val service = Api().apiRequest().create(ApiService::class.java)
+//        service.getSummary().enqueue(object: Callback<ResponseSummary>{
+//            override fun onFailure(call: Call<ResponseSummary>, t: Throwable) {
+//                value = list
+//            }
+//
+//            override fun onResponse(
+//                call: Call<ResponseSummary>,
+//                response: Response<ResponseSummary>
+//            ) {
+//                if (response.body() != null){
+//                    val data = response.body()!!.Countries
+//                    for(i in 0 until data.size){
+//                        if(data[i].TotalConfirmed != 0){
+//                            list.add(data[i])
+//                        }
+//                    }
+//                    Log.d("LOGLOGAN", list.toString())
+//                    value = list
+//                }
+//            }
+//
+//        })
 
     }
 
-    val dataList: LiveData<ArrayList<MCountry>> = _dataList
+//    val dataList: LiveData<ArrayList<MCountry>> = _dataList
     val dataChart: LiveData<LineDataSet> = _dataChart
 }
