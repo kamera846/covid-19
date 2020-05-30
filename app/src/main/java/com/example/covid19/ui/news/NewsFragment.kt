@@ -1,6 +1,8 @@
 package com.example.covid19.ui.news
 
+import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,10 +19,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.covid19.R
 import com.example.covid19.adapter.NewsRecyclerAdapter
+import com.example.covid19.data.Api
+import com.example.covid19.data.ApiService
+import com.example.covid19.model.MNews
+import com.example.covid19.response.ResponseNews
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class NewsFragment : Fragment() {
 
     private lateinit var newsViewModel: NewsViewModel
+    private lateinit var recyclerview: RecyclerView
+
+    private lateinit var mLoading: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,18 +42,43 @@ class NewsFragment : Fragment() {
         newsViewModel =
             ViewModelProviders.of(this).get(NewsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_news, container, false)
-        val recyclerview: RecyclerView = root.findViewById(R.id.recyclerview)
+        recyclerview = root.findViewById(R.id.recyclerview)
+
+        mLoading = ProgressDialog(context!!)
+        mLoading.setCancelable(false)
+        mLoading.setMessage("Loading ...")
 
         newsViewModel.data.observe(viewLifecycleOwner, Observer {
-            recyclerview.apply {
-                layoutManager = LinearLayoutManager(context!!)
-                adapter = NewsRecyclerAdapter(context!!, it)
-
-                layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-                adapter?.notifyDataSetChanged()
-                scheduleLayoutAnimation()
-            }
+            getData(it)
         })
         return root
+    }
+
+    private fun getData(data: ArrayList<MNews>){
+        mLoading.show()
+        val service = Api().apiRequest().create(ApiService::class.java)
+        service.getNews().enqueue(object: Callback<ResponseNews>{
+            override fun onFailure(call: Call<ResponseNews>, t: Throwable) {
+                mLoading.dismiss()
+                Toast.makeText(context!!, "Something went wrong", Toast.LENGTH_LONG)
+            }
+
+            override fun onResponse(call: Call<ResponseNews>, response: Response<ResponseNews>) {
+                mLoading.dismiss()
+                if(response.body() != null){
+
+                } else {
+                    recyclerview.apply {
+                        layoutManager = LinearLayoutManager(context!!)
+                        adapter = NewsRecyclerAdapter(context!!, data)
+
+                        layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+                        adapter?.notifyDataSetChanged()
+                        scheduleLayoutAnimation()
+                    }
+                }
+            }
+
+        })
     }
 }
