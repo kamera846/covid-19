@@ -12,4 +12,11 @@ class Api {
             .build()
     }
 
+    fun baseUrlNews(): Retrofit{
+        return Retrofit.Builder()
+            .baseUrl("https://newsapi.org/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
 }

@@ -48,15 +48,13 @@ class NewsFragment : Fragment() {
         mLoading.setCancelable(false)
         mLoading.setMessage("Loading ...")
 
-        newsViewModel.data.observe(viewLifecycleOwner, Observer {
-            getData(it)
-        })
+        getData()
         return root
     }
 
-    private fun getData(data: ArrayList<MNews>){
+    private fun getData(){
         mLoading.show()
-        val service = Api().apiRequest().create(ApiService::class.java)
+        val service = Api().baseUrlNews().create(ApiService::class.java)
         service.getNews().enqueue(object: Callback<ResponseNews>{
             override fun onFailure(call: Call<ResponseNews>, t: Throwable) {
                 mLoading.dismiss()
@@ -66,15 +64,15 @@ class NewsFragment : Fragment() {
             override fun onResponse(call: Call<ResponseNews>, response: Response<ResponseNews>) {
                 mLoading.dismiss()
                 if(response.body() != null){
+                    if(response.body()!!.status == "ok"){
+                        recyclerview.apply {
+                            layoutManager = LinearLayoutManager(context!!)
+                            adapter = NewsRecyclerAdapter(context!!, response.body()!!.articles)
 
-                } else {
-                    recyclerview.apply {
-                        layoutManager = LinearLayoutManager(context!!)
-                        adapter = NewsRecyclerAdapter(context!!, data)
-
-                        layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-                        adapter?.notifyDataSetChanged()
-                        scheduleLayoutAnimation()
+                            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+                            adapter?.notifyDataSetChanged()
+                            scheduleLayoutAnimation()
+                        }
                     }
                 }
             }

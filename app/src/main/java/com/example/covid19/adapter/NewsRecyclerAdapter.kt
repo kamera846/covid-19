@@ -39,7 +39,7 @@ class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
             holder.itemCardView.visibility = View.GONE
 
             Glide.with(mContext)
-                .load(mData[position].imgContent)
+                .load(mData[position].urlToImage)
                 .into(holder.imgTop)
 
             holder.titleTop.text = mData[position].title
@@ -49,7 +49,7 @@ class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
             holder.itemCardView.visibility = View.VISIBLE
 
             Glide.with(mContext)
-                .load(mData[position].imgContent)
+                .load(mData[position].urlToImage)
                 .into(holder.imgContent)
 
             holder.title.text = mData[position].title
