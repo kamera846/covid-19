@@ -1,16 +1,19 @@
 package com.example.covid19.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.covid19.R
 import com.example.covid19.model.MNews
+import com.example.covid19.ui.WebViewActivity
 
 class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
     RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder>() {
@@ -44,6 +47,11 @@ class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
 
             holder.titleTop.text = mData[position].title
             holder.descriptionTop.text = mData[position].description
+
+            holder.itemView.setOnClickListener {
+                mContext.startActivity(Intent(mContext, WebViewActivity::class.java))
+            }
+
         } else {
             holder.itemTop.visibility = View.GONE
             holder.itemCardView.visibility = View.VISIBLE

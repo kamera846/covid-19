@@ -65,7 +65,7 @@ dependencies {
 
     // Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    
+
     // Statistics
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
