@@ -49,7 +49,8 @@ class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
             holder.descriptionTop.text = mData[position].description
 
             holder.itemView.setOnClickListener {
-                mContext.startActivity(Intent(mContext, WebViewActivity::class.java))
+                mContext.startActivity(Intent(mContext, WebViewActivity::class.java)
+                    .putExtra("url", mData[position].url))
             }
 
         } else {
@@ -62,6 +63,11 @@ class NewsRecyclerAdapter(var mContext: Context, var mData: ArrayList<MNews>) :
 
             holder.title.text = mData[position].title
             holder.description.text = mData[position].description
+
+            holder.itemView.setOnClickListener {
+                mContext.startActivity(Intent(mContext, WebViewActivity::class.java)
+                    .putExtra("url", mData[position].url))
+            }
         }
     }
 }

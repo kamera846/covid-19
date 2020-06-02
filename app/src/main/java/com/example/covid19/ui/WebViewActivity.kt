@@ -12,7 +12,9 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        webview.loadUrl("https://www.google.com/")
-        webview.webViewClient = WebViewClient()
+        if(intent != null){
+            webview.loadUrl("${intent.getStringExtra("url")}")
+            webview.webViewClient = WebViewClient()
+        }
     }
 }
