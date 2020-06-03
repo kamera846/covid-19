@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/img_virus"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.WebViewActivity"></activity>
+        <activity android:name=".ui.CountryDetailActivity"></activity>
+        <activity android:name=".ui.WebViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
