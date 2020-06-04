@@ -1,6 +1,7 @@
 package com.example.covid19.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.covid19.R
 import com.example.covid19.model.MCountry
+import com.example.covid19.ui.CountryDetailActivity
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -35,6 +37,11 @@ class CountriesRecyclerAdapter(var mContext: Context, var mData: ArrayList<MCoun
 //                .load(mData[position].flag)
 //                .into(holder.imgCountries)
         val formatter = NumberFormat.getNumberInstance(Locale.ENGLISH)
+
+        holder.itemView.setOnClickListener {
+            mContext.startActivity(Intent(mContext, CountryDetailActivity::class.java)
+                .putExtra("itemPosition", position))
+        }
 
         holder.tvName.text = "${position+1}. ${mData[position].Country}"
         holder.tvPositive.text = formatter.format(mData[position].TotalConfirmed)
